@@ -1,0 +1,26 @@
+$ sudo apt-get remove nodejs
+$ sudo apt-get remove npm
+
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+$ chmod +x ~/.nvm/nvm.sh
+$ source ~/.bashrc 
+
+$ nvm -v
+0.39.2
+
+
+ERROR 1: U slucaju da materils nece da se instalira
+MESSAGE: Cannot find module '@angular/cdk/schematics' #21
+solution: npm i @angular/cdk
+
+ERROR 2: Error ENOSPC System limit for number of file watchers reached
+// Check the watchers number
+cat /proc/sys/fs/inotify/max_user_watches
+// set new number
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+// apply
+sudo sysctl -p
+// check yhe updated number
+cat /proc/sys/fs/inotify/max_user_watches
+
+
