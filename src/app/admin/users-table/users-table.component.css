@@ -1,0 +1,16 @@
+.example-container{
+    height: 50vp;
+}
+.example-sidenav-content{
+    /* background-color: gray; */
+    height: 50rem;
+}
+.toggleBtn{
+    height: 300px;
+}
+.red{
+    color:red
+}
+.green{
+    color: green;
+}

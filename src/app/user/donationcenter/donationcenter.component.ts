@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DonationCenterService } from 'src/app/donation-center.service';
-import { DonactionCenter } from 'src/app/model/donationCenter';
+import { DonationCenter } from 'src/app/model/donationCenter';
 
 
 var displayedColumns: string[];
@@ -15,7 +15,7 @@ export class DonationcenterComponent {
 
   constructor(private dcServise: DonationCenterService) { }
 
-  donationCenters = new MatTableDataSource<DonactionCenter>(this.dcServise.getCenters());
+  donationCenters = new MatTableDataSource<DonationCenter>(this.dcServise.getCenters());
   displayedColumns = this.dcServise.getDisplayedColumn();
   selectedCenter: any;
   searchString:string ="";
@@ -37,7 +37,7 @@ export class DonationcenterComponent {
       this.donationCenters.filter = this.searchString.trim().toLowerCase() + "|" + this.selectedOption;
     }
 
-  showCenterDetails(item: DonactionCenter) {
+  showCenterDetails(item: DonationCenter) {
     console.log(item)
     this.selectedCenter = item;
   }

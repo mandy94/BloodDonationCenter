@@ -1,4 +1,5 @@
-export interface DonactionCenter{
+export interface DonationCenter{
+    id:number,
     name: string,
     city: string,
     street : string,
@@ -6,5 +7,5 @@ export interface DonactionCenter{
     img: string
 }
 export interface Props{
-    array : DonactionCenter[]
+    array : DonationCenter[]
 }

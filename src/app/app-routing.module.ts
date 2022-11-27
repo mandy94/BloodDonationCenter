@@ -8,10 +8,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { StartComponent } from './start/start.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { UsersTableComponent } from './admin/users-table/users-table.component';
 
  const routes: Routes = [
       {path:'' , component:StartComponent},
       { path: 'user', component: UserHomeComponent },
+      {path :'users', component: UsersTableComponent },
       { path: 'admin', component: AdminHomeComponent},
       { path: 'user/profile', component: UserProfileComponent },
       { path: 'admin/profile', component: AdminProfileComponent},

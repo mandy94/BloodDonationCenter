@@ -20,6 +20,12 @@ import { UserHomeComponent } from './user/user-home/user-home.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import { UsersTableComponent } from './admin/users-table/users-table.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { UserDetailsComponent } from './dialogs/user-details/user-details.component';
+import { MatDialogModule,} from '@angular/material/dialog';
 @NgModule({
   declarations: [    
     AppComponent,    
@@ -30,15 +36,23 @@ import {MatCardModule} from '@angular/material/card';
     StartComponent,
     AdminHomeComponent,
     UserHomeComponent,
-    OrdinalPipe
+    OrdinalPipe,
+    UsersTableComponent,
+    
   ],
   imports: [
+    MatDialogModule,
     MatIconModule,
+    
+    MatSidenavModule,
+    MatExpansionModule,
     MatSelectModule,
     MatCardModule,
+    MatButtonModule,
     MatTableModule,
     FormsModule,
     FlexLayoutModule,
+      
     BrowserModule,
     MatInputModule,
     MatSlideToggleModule,
