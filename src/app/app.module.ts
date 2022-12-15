@@ -26,6 +26,16 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { UserDetailsComponent } from './dialogs/user-details/user-details.component';
 import { MatDialogModule,} from '@angular/material/dialog';
+import { CreateAppointmentComponent } from './admin/create-appointment/create-appointment.component';
+import { AppointmentListComponent } from './admin/create-appointment/appointment-list/appointment-list.component';
+import {
+  NgxMatDatetimePickerModule, 
+  NgxMatNativeDateModule, 
+  NgxMatTimepickerModule 
+} from '@angular-material-components/datetime-picker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [    
     AppComponent,    
@@ -38,12 +48,20 @@ import { MatDialogModule,} from '@angular/material/dialog';
     UserHomeComponent,
     OrdinalPipe,
     UsersTableComponent,
+    CreateAppointmentComponent,
+    AppointmentListComponent,
+    
     
   ],
   imports: [
     MatDialogModule,
     MatIconModule,
-    
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     MatExpansionModule,
     MatSelectModule,
@@ -52,7 +70,7 @@ import { MatDialogModule,} from '@angular/material/dialog';
     MatTableModule,
     FormsModule,
     FlexLayoutModule,
-      
+    MatDatepickerModule,
     BrowserModule,
     MatInputModule,
     MatSlideToggleModule,

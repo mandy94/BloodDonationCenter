@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DonationCenterService } from 'src/app/donation-center.service';
 import { DonationCenter } from 'src/app/model/donationCenter';
@@ -14,7 +14,7 @@ var displayedColumns: string[];
 export class DonationcenterComponent {
 
   constructor(private dcServise: DonationCenterService) { }
-
+  // emiter: EventEmitter<any> = new EventEmitter();
   donationCenters = new MatTableDataSource<DonationCenter>(this.dcServise.getCenters());
   displayedColumns = this.dcServise.getDisplayedColumn();
   selectedCenter: any;
@@ -38,9 +38,10 @@ export class DonationcenterComponent {
     }
 
   showCenterDetails(item: DonationCenter) {
-    console.log(item)
     this.selectedCenter = item;
+
   }
+  
   printStars(count: number) {
     var result = "";
     for (var i = 0; i < count; i++)

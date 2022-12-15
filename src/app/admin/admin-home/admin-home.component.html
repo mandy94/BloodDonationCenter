@@ -12,32 +12,38 @@ mogu biti sortirani po imenu, prezimenu, datumu davanja krvi...
                         <mat-label>
                                 ( for developmemnt only)</mat-label>
                         <mat-select [(ngModel)]="donationCenterToDisplay" (selectionChange)="changeSelection($event)">
-                                <mat-option *ngFor="let center of donationCenters" [value]="center" >
+                                <mat-option *ngFor="let center of donationCenters" [value]="center">
                                         {{center|json}}
                                 </mat-option>
                         </mat-select>
                 </mat-form-field>
         </div>
-    <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="donationCenterToDisplay">
-        <h1> Administratorska strana </h1>
-        <h2> {{donationCenterToDisplay.name}}, {{donationCenterToDisplay.city}}</h2>
-        <div fxLayout="column" fxLayoutAlign="space-around center">
-            <!-- profil admina -->
-            <div>
-                <button mat-stroked-button class="links" (click)="dataToShow='users'">
-                      Lista korisnika centara
-                    </button>
-                <button mat-stroked-button class="links"> <a routerLink="/" routerLinkActive="active"
-                        ariaCurrentWhenActive="page"> Zapocni termin / unesi informacije</a></button>
-                <button mat-stroked-button class="links"> <a routerLink="/" routerLinkActive="active"
-                        ariaCurrentWhenActive="page"> Radni kalendar</a></button>
-                <button mat-stroked-button class="links"> <a routerLink="/" routerLinkActive="active"
-                        ariaCurrentWhenActive="page"> Zakazi novi pregled</a></button>
-            </div>
-    
+        <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="donationCenterToDisplay">
+                <h1> Administratorska strana </h1>
+                <h2> {{donationCenterToDisplay.name}}, {{donationCenterToDisplay.city}}</h2>
+                <div fxLayout="column" fxLayoutAlign="space-around center">
+                        <!-- profil admina -->
+                        <div>
+                                <button mat-stroked-button class="links" (click)="dataToShow='users'">
+                                        Lista korisnika centara
+                                </button>
+                                <button mat-stroked-button class="links" (click)="dataToShow='appointments'"> Definisi slobodne
+                                        termina </button>
+                                <button mat-stroked-button class="links"> <a routerLink="/" routerLinkActive="active"
+                                                ariaCurrentWhenActive="page"> Zapocni termin / unesi
+                                                informacije</a></button>
+                                <button mat-stroked-button class="links"> <a routerLink="/" routerLinkActive="active"
+                                                ariaCurrentWhenActive="page"> Radni kalendar</a></button>
+                                <button mat-stroked-button class="links"> <a routerLink="/" routerLinkActive="active"
+                                                ariaCurrentWhenActive="page"> Zakazi novi pregled</a></button>
+                        </div>
+
+                </div>
         </div>
-    </div>
-    <div *ngIf="dataToShow=='users'">
-        <app-users-table [donationCenter]="donationCenterToDisplay"></app-users-table>
-    </div>
-    
+        <div *ngIf="dataToShow=='users'">
+                <app-users-table [donationCenter]="donationCenterToDisplay"></app-users-table>
+        </div>
+        <div *ngIf="dataToShow=='appointments'">
+                <app-create-appointment [donationCenter]="donationCenterToDisplay"></app-create-appointment>
+        </div>
+        

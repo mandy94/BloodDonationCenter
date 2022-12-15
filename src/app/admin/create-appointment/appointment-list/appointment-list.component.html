@@ -1,0 +1,12 @@
+<div>
+    <div *ngFor="let item of predefinedAppointments" fxLayout="row" fxLayoutAlign="space-around left" fxLayoutGap>
+        <mat-card fxFill fxLayoutGap>
+            <mat-card-header> {{item.type}}</mat-card-header> 
+            <mat-card-content>
+                Vreme: {{item.start}} - {{item.end}}
+                Datum: {{item.date}}
+            </mat-card-content>
+            <mat-card-actions> <button>Izmeni </button> <button>Obrisi</button></mat-card-actions>
+        </mat-card>
+    </div>
+</div>

@@ -26,7 +26,11 @@
                 <div>
                     <mat-card-subtitle>{{selectedCenter.city}},{{selectedCenter.street}}</mat-card-subtitle>
                     <mat-card-title> {{selectedCenter.name}}</mat-card-title>
-                    <h3> Slobodni termini za danas su:</h3>
+                    <h3> Slobodni predefinisan su:</h3>
+                    <!-- 3.8 funckionlansot -->
+                  <app-appointment-list [donationCenter]="selectedCenter" ></app-appointment-list>
+                    <p> Nema termina koji tebi odogvara? Predlozi termin:</p>
+                    <!-- 3.11 funciolnost -->
                 </div>
             </mat-card-content>
         </mat-card>
