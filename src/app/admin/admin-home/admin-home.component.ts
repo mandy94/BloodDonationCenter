@@ -12,13 +12,15 @@ import { UsersService } from 'src/app/users.service';
 export class AdminHomeComponent {
   dataToShow: string = "";
   donationCenters: Array<DonationCenter> = this.dcService.getCenters();
-  donationCenterToDisplay: DonationCenter = {} as DonationCenter;
-  constructor(private dcService: DonationCenterService, private userService: UsersService) { }
+  donationCenterToDisplay: DonationCenter|undefined;
+  constructor(private dcService: DonationCenterService, private userService: UsersService) {
+    this.donationCenterToDisplay=undefined;
+  }
 
   changeSelection(event:any){
-    Object.assign(this.donationCenterToDisplay, event.value);
+   this.donationCenterToDisplay =event.value;
     this.userService.updateDonationCentersToDisplay(event.value);
-    
+    this.dataToShow='users';
   }
 
 }

@@ -36,6 +36,8 @@ import {
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   declarations: [    
     AppComponent,    
@@ -55,6 +57,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     MatDialogModule,
+    MatRadioModule,
     MatIconModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,

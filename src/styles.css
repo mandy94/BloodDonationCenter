@@ -8,8 +8,10 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    
     background-image: url('assets/background.jpeg');
-background-size: cover;
+   
+    background-size: cover;
 }
 
 .w-80 {
@@ -19,4 +21,11 @@ background-size: cover;
 .m-5 {
     margin-left: 5%;
     margin-right: 5%;
+}
+
+.red{
+    color:red
+}
+.green{
+    color: green;
 }

@@ -5,8 +5,8 @@ mogu biti sortirani po imenu, prezimenu, datumu davanja krvi...
 ● radni kalendar,
 ● profil korisnika,
 ● stranicu za zakazivanje novog pregleda. -->
-<div class="m-5">
-        <div fxLayout="column" fxLayoutAlign="space-around center">
+<div class="container" >"
+        <div fxLayout="column" fxLayoutAlign="space-around center"  *ngIf="!donationCenterToDisplay">
                 <h3> Odaberite za koji centar zelite da priakzete admin stranu</h3>
                 <mat-form-field class="w-80">
                         <mat-label>
@@ -18,8 +18,10 @@ mogu biti sortirani po imenu, prezimenu, datumu davanja krvi...
                         </mat-select>
                 </mat-form-field>
         </div>
-        <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="donationCenterToDisplay">
-                <h1> Administratorska strana </h1>
+<div class="m-5"  *ngIf="donationCenterToDisplay">
+       
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+                <!-- <h4> Administratorska strana </h4> -->
                 <h2> {{donationCenterToDisplay.name}}, {{donationCenterToDisplay.city}}</h2>
                 <div fxLayout="column" fxLayoutAlign="space-around center">
                         <!-- profil admina -->
@@ -44,6 +46,6 @@ mogu biti sortirani po imenu, prezimenu, datumu davanja krvi...
                 <app-users-table [donationCenter]="donationCenterToDisplay"></app-users-table>
         </div>
         <div *ngIf="dataToShow=='appointments'">
-                <app-create-appointment [donationCenter]="donationCenterToDisplay"></app-create-appointment>
+                <app-appointment-list [donationCenter]="donationCenterToDisplay" [userType]="'Admin'"></app-appointment-list>
         </div>
-        
+</div>

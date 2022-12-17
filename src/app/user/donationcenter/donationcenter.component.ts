@@ -35,6 +35,7 @@ export class DonationcenterComponent {
 
   applyFilter() {
       this.donationCenters.filter = this.searchString.trim().toLowerCase() + "|" + this.selectedOption;
+      this.selectedCenter=null;
     }
 
   showCenterDetails(item: DonationCenter) {

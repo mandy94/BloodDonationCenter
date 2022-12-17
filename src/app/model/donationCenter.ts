@@ -7,7 +7,7 @@ export interface DonationCenter{
     street : string,
     rating: number,
     img: string,
-    predefiendAvailableAppointments : Array<Appointment>|[]
+    predefiendAvailableAppointments :any
 }
 export interface Props{
     array : DonationCenter[]

@@ -1,3 +1,13 @@
+.field{
+    width: 27%;   
+}
+.sm_field{
+    width: 22%;
+    
+}
+.btn{
+    width: 100%;
+}
 mat-form-field{
-    margin: 5px;
+    margin: 5px 5px 0px 0px;
 }

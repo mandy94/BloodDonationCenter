@@ -1,14 +1,15 @@
+
 <div *ngIf="donationCenter" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap>
     <h2>Dodavanje predefinisanih termina:</h2>
     <div>
         <form [formGroup]="addPredefiendTerm">
-            <mat-form-field>
+            <mat-form-field class="field" >
                 <mat-label>Detalji ( tip ) termina: </mat-label>
                 <input matInput placeholder="Ciljna grupa ili ustanova, a mozda cak i neki dogadjaj"
                     formControlName="type">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-form-field class="sm_field" appearance="fill">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="date">
                 <mat-hint>MM/DD/YYYY</mat-hint>
@@ -16,19 +17,25 @@
                 <mat-datepicker touchUi #picker></mat-datepicker>
 
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Vreme termina: </mat-label>
-                <input matInput placeholder="Od do formata 00-00"
-                    formControlName="time">
+            <mat-form-field class="sm_field" >
+                <mat-label>Vreme pocetak termina: </mat-label>
+                <input matInput placeholder="Formata hh-mm"
+                    formControlName="start">
 
             </mat-form-field>
-            <button (click)="addTerm()"> Dodaj novi predefinisan termin</button>
+            <mat-form-field class="sm_field" >
+                <mat-label>Vreme zavrsetka termina: </mat-label>
+                <input matInput placeholder="Formata hh-mm"
+                    formControlName="end">
 
+            </mat-form-field>
+            
+            <button (click)="addTerm()"  class="btn"> Dodaj novi predefinisan termin</button>
         </form>
 
+       
+            <!-- <app-appointment-list [donationCenter]="donationCenter" [userType]="'Admin'" (notifyParent)="updateView($event)"></app-appointment-list> -->
+     
     </div>
 
-    <div fxLayout="row">
-        <app-appointment-list [donationCenter]="donationCenter" fxFill></app-appointment-list>
-    </div>
 </div>

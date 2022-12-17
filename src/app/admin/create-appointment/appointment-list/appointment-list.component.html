@@ -1,12 +1,31 @@
-<div>
-    <div *ngFor="let item of predefinedAppointments" fxLayout="row" fxLayoutAlign="space-around left" fxLayoutGap>
-        <mat-card fxFill fxLayoutGap>
-            <mat-card-header> {{item.type}}</mat-card-header> 
-            <mat-card-content>
-                Vreme: {{item.start}} - {{item.end}}
-                Datum: {{item.date}}
-            </mat-card-content>
-            <mat-card-actions> <button>Izmeni </button> <button>Obrisi</button></mat-card-actions>
-        </mat-card>
+<app-create-appointment [donationCenter]="donationCenter" (notifyParent)="updateView($event)" *ngIf="userType!='User'"></app-create-appointment>
+
+    <mat-radio-group aria-label="Sort by" (change)="sort($event)" [(ngModel)]="sortCriteria">
+        <mat-radio-button value="date_asc">Najraniji termin</mat-radio-button>
+        <mat-radio-button value="date_dsc">Najkasniji termin</mat-radio-button>
+        <mat-radio-button value="name_asc">Po imeni od A-Z</mat-radio-button>
+        <mat-radio-button value="name_dsc">Po imenu od Z-A</mat-radio-button>
+    </mat-radio-group>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" >
+        <div *ngFor="let item of predefinedAppointments" fxLayoutGap >
+            <button fxFlex> {{item.start}} - {{item.end}}</button>
+            <!-- <mat-card fxFlex> 
+                <mat-card-header [ngClass]="{'red' : sortCriteria==='name_asc', 'green':sortCriteria==='name_dsc'}">
+                    {{item.type}}</mat-card-header>
+                <mat-card-content [ngClass]="{'red' : sortCriteria==='date_asc' , 'green':sortCriteria==='date_dsc'}">
+                    Vreme: {{item.start}} - {{item.end}}
+                    Datum: {{item.date.getTime()}}
+                </mat-card-content>
+                <div *ngIf="userType=='Admin'">
+                    <mat-card-actions>
+                        <button>Izmeni</button>
+                        <button>Obrisi</button>
+                    </mat-card-actions>
+                </div>
+                <div *ngIf="userType=='User'">
+                    <mat-card-actions> <button (click)="reserveTerm()">Zakazi </button></mat-card-actions>
+                </div>
+            </mat-card> -->
+        </div>
+
     </div>
-</div>
