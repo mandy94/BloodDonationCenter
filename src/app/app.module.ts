@@ -37,6 +37,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
+import { QuestionareComponent } from './user/questionare/questionare.component';
+import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
+
 
 @NgModule({
   declarations: [    
@@ -52,6 +55,8 @@ import {MatRadioModule} from '@angular/material/radio';
     UsersTableComponent,
     CreateAppointmentComponent,
     AppointmentListComponent,
+    QuestionareComponent,
+    ConfirmationComponent,
     
     
   ],
@@ -59,6 +64,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDialogModule,
     MatRadioModule,
     MatIconModule,
+    
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,

@@ -1,4 +1,4 @@
-import { TemplateBindingParseResult } from '@angular/compiler';
+
 import { Injectable } from '@angular/core';
 import { Appointment } from './model/appointment';
 import { DonationCenter } from './model/donationCenter';
@@ -27,27 +27,27 @@ export class DonationCenterService {
       {
         id: 3,
         type: "Sindakti Srbije",
-        start: "02:00",
-        end: "02:30",
+        start: "03:30",
+        end: "03:45",
         date: new Date(2022, 13, 20)
       }, {
         id: 2,
         type: "SDK",
-        start: "03:00",
-        end: "03:30",
+        start: "04:40",
+        end: "04:45",
         date: new Date(2022, 12, 20)
       },
       {
         id: 3,
         type: "Sindakti Srbije",
-        start: "02:00",
-        end: "02:30",
+        start: "04:45",
+        end: "04:00",
         date: new Date(2022, 13, 20)
       }, {
         id: 2,
         type: "SDK",
-        start: "03:00",
-        end: "03:30",
+        start: "05:15",
+        end: "05:30",
         date: new Date(2022, 12, 20)
       },
       {
@@ -113,6 +113,7 @@ export class DonationCenterService {
 
   getCenters(): Array<DonationCenter> {
     return this.Donation_centers;
+    
   }
   getCenterById(id: number): DonationCenter | undefined {
     return this.Donation_centers.find(item => item.id === id);

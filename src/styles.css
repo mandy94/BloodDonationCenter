@@ -29,3 +29,7 @@ body {
 .green{
     color: green;
 }
+.passive{
+    color: gray;
+    font-size: small;
+}

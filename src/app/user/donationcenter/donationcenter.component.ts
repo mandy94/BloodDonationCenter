@@ -13,13 +13,14 @@ var displayedColumns: string[];
 })
 export class DonationcenterComponent {
 
-  constructor(private dcServise: DonationCenterService) { }
+  constructor(private dcServise: DonationCenterService,private userService: UsersService, private router:Router) { }
   // emiter: EventEmitter<any> = new EventEmitter();
   donationCenters = new MatTableDataSource<DonationCenter>(this.dcServise.getCenters());
   displayedColumns = this.dcServise.getDisplayedColumn();
   selectedCenter: any;
   searchString:string ="";
   selectedOption = 6;
+  isQuestionareFilled =this.userService.didLoggedUserFilledQuestionare();
   ngOnInit() {
 
     this.donationCenters.filterPredicate = function (data, filter: string,): boolean {
@@ -42,7 +43,10 @@ export class DonationcenterComponent {
     this.selectedCenter = item;
 
   }
-  
+  goToQuestionare(){
+    this.router.navigate(['/users/questionare-form']);
+  }
+
   printStars(count: number) {
     var result = "";
     for (var i = 0; i < count; i++)
@@ -53,6 +57,8 @@ export class DonationcenterComponent {
 
 
 import { Pipe, PipeTransform } from "@angular/core";
+import { UsersService } from 'src/app/users.service';
+import { Router } from '@angular/router';
 
 
 @Pipe({

@@ -21,15 +21,22 @@
     </div>
     <div *ngIf="selectedCenter" class="w-80">
         <mat-card>
-            <mat-card-content fxLayout="row" fxLayoutAlign="space-around strech">
+            <mat-card-title><h1>{{selectedCenter.name}}</h1> </mat-card-title>
+            <mat-card-subtitle><h5>{{selectedCenter.city}},{{selectedCenter.street}}</h5></mat-card-subtitle>
+            <mat-card-content fxLayout="row wrap" fxLayoutAlign="space-around strech">
                 <img mat-card-image src="{{selectedCenter.img}}" alt="Photo of a Shiba Inu">
-                <div>
-                    <mat-card-subtitle>{{selectedCenter.city}},{{selectedCenter.street}}</mat-card-subtitle>
-                    <mat-card-title> {{selectedCenter.name}}</mat-card-title>
-                    <h3> Slobodni predefinisan su:</h3>
+                <div style="width: 55%; margin-top: 10px;">
+                  
+                    
                     <!-- 3.8 funckionlansot -->
-                  <app-appointment-list [donationCenter]="selectedCenter" [userType]="'User'" ></app-appointment-list>
-                    <p> Nema termina koji tebi odogvara? Predlozi termin:</p>
+                    <p *ngIf="!isQuestionareFilled" class="red">  Morate prvo da popunite formular da biste zakazali termin! 
+                        <button (click)="goToQuestionare()"> Link za popunjavanje </button>
+                    </p>
+                    <p *ngIf="isQuestionareFilled" class="passive">  Formular je popunjan uspesno. Mozete zakazati termin,
+                    </p>
+                    <h3> Slobodni predefinisani termini su:</h3>
+                        <app-appointment-list [donationCenter]="selectedCenter" [userType]="'User'" ></app-appointment-list>
+                          
                     <!-- 3.11 funciolnost -->
                 </div>
             </mat-card-content>
@@ -50,7 +57,7 @@
 
             <ng-container matColumnDef="rating">
                 <th mat-header-cell *matHeaderCellDef> Rejting </th>
-                <td mat-cell *matCellDef="let element"> <div class="stars">{{ printStars(element.rating) }} </div> </td>
+                <td mat-cell *matCellDef="let element"> <div class="stars">{{ printStars(element.rating) }} ({{element.rating}}) </div> </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
