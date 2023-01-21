@@ -15,13 +15,18 @@ export class DonationcenterComponent {
 
   constructor(private dcServise: DonationCenterService,private userService: UsersService, private router:Router) { }
   // emiter: EventEmitter<any> = new EventEmitter();
-  donationCenters = new MatTableDataSource<DonationCenter>(this.dcServise.getCenters());
+  centers: DonationCenter[] = [];
+  donationCenters = new MatTableDataSource<DonationCenter>();
   displayedColumns = this.dcServise.getDisplayedColumn();
   selectedCenter: any;
   searchString:string ="";
   selectedOption = 6;
   isQuestionareFilled =this.userService.didLoggedUserFilledQuestionare();
   ngOnInit() {
+    this.dcServise.getCenters().subscribe(res=> {
+      this.centers = res;
+      this.donationCenters.data = this.centers;
+    })
 
     this.donationCenters.filterPredicate = function (data, filter: string,): boolean {
       let searchName = filter.split("|")[0];

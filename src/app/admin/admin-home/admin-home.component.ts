@@ -11,10 +11,16 @@ import { UsersService } from 'src/app/users.service';
 })
 export class AdminHomeComponent {
   dataToShow: string = "";
-  donationCenters: Array<DonationCenter> = this.dcService.getCenters();
+  donationCenters: DonationCenter[] = [];
   donationCenterToDisplay: DonationCenter|undefined;
   constructor(private dcService: DonationCenterService, private userService: UsersService) {
     this.donationCenterToDisplay=undefined;
+  }
+
+  ngOnInit() {
+    this.dcService.getCenters().subscribe(res=> {
+      this.donationCenters = res;
+    })
   }
 
   changeSelection(event:any){

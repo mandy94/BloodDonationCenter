@@ -1,5 +1,7 @@
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Appointment } from './model/appointment';
 import { DonationCenter } from './model/donationCenter';
 
@@ -8,7 +10,40 @@ import { DonationCenter } from './model/donationCenter';
 })
 export class DonationCenterService {
 
-  constructor() { }
+  apiHost: string = 'http://localhost:8080/';
+  headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+  constructor(private http: HttpClient) { }
+
+  getCenters(): Observable<DonationCenter[]> {
+    //return this.Donation_centers;
+    return this.http.get<DonationCenter[]>(this.apiHost + 'center/', {headers: this.headers});
+  }
+  getCenterById(id: number): DonationCenter | undefined {
+    return this.Donation_centers.find(item => item.id === id);
+
+
+  }
+  getPredefiendAvailableAppointmentsByCenterId(id: number | undefined): Array<Appointment> | null {
+    var target = this.Donation_centers.find(center => center.id === id);
+    if (target)
+      return target.predefiendAvailableAppointments;
+    else
+      return null;
+
+  }
+  addPredefiendTermsToCenter(center: DonationCenter | undefined, term: Appointment): void {
+    console.log(center) 
+    if (center != undefined) {
+      let target: DonationCenter | undefined = this.Donation_centers.find(x => { x.id === center.id });
+      if (target != undefined)
+        target.predefiendAvailableAppointments.push(term);
+    }
+  }
+  getDisplayedColumn() {
+    return ['name', 'city', 'rating'];
+  }
+  
   Donation_centers: Array<DonationCenter> = [
     {
       id: 1, name: "Centar za transfuziju krvi", city: "Novi Sad", street: "Novosadskog sajma 23", rating: 5, img: "../../../assets/zavod1.jpg", predefiendAvailableAppointments: [{
@@ -111,32 +146,4 @@ export class DonationCenterService {
       }]
     }]
 
-  getCenters(): Array<DonationCenter> {
-    return this.Donation_centers;
-    
-  }
-  getCenterById(id: number): DonationCenter | undefined {
-    return this.Donation_centers.find(item => item.id === id);
-
-
-  }
-  getPredefiendAvailableAppointmentsByCenterId(id: number | undefined): Array<Appointment> | null {
-    var target = this.Donation_centers.find(center => center.id === id);
-    if (target)
-      return target.predefiendAvailableAppointments;
-    else
-      return null;
-
-  }
-  addPredefiendTermsToCenter(center: DonationCenter | undefined, term: Appointment): void {
-    console.log(center) 
-    if (center != undefined) {
-      let target: DonationCenter | undefined = this.Donation_centers.find(x => { x.id === center.id });
-      if (target != undefined)
-        target.predefiendAvailableAppointments.push(term);
-    }
-  }
-  getDisplayedColumn() {
-    return ['name', 'city', 'rating'];
-  }
 }
