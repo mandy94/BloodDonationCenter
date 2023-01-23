@@ -33,6 +33,7 @@ import {
   NgxMatNativeDateModule, 
   NgxMatTimepickerModule 
 } from '@angular-material-components/datetime-picker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -64,7 +65,7 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     MatDialogModule,
     MatRadioModule,
     MatIconModule,
-    
+    NgxMaterialTimepickerModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,

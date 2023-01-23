@@ -33,7 +33,7 @@ export class DonationcenterComponent {
       let searchRating = filter.split("|")[1];
       return (data.name.toString().toLowerCase().includes(searchName)
       || data.city.toLowerCase().includes(searchName)
-      || data.street.toString().toLowerCase() === searchName)
+      || data.address.toString().toLowerCase() === searchName)
       && data.rating <= Number(searchRating)
 
     };

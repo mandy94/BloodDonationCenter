@@ -42,13 +42,6 @@ export class AppointmentListComponent implements OnChanges {
       case "date_dsc":
         this.predefinedAppointments?.sort((y, x) => x.date.getTime() - y.date.getTime());
         break;
-      case "name_asc":
-        this.predefinedAppointments?.sort((x, y) => x.type.localeCompare(y.type));
-        break;
-      case "name_dsc":
-        this.predefinedAppointments?.sort((y, x) => x.type.localeCompare(y.type));
-        break;
-
     }
   }
   reserveTerm(sender: any, data: Appointment) {

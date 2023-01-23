@@ -2,9 +2,8 @@
 
 export interface Appointment{
     id:number,
-    start:string,
-    end:string,
-    type:string,
+    start:number,
+    end:number,
     date:Date
     // donactionCenter: DonationCenter
 }
