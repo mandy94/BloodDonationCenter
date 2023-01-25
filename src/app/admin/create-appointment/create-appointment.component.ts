@@ -53,6 +53,6 @@ export class CreateAppointmentComponent implements OnInit { // chield
       term.date = this.addPredefiendTerm.value.date;
 
     this.donationCenterService.addPredefiendTermsToCenter(this.donationCenter, term);
-    this.notifyParent.emit(term);
+    //this.notifyParent.emit(term);
   }
 }

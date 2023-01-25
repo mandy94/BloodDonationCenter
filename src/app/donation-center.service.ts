@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Appointment } from './model/appointment';
 import { DonationCenter } from './model/donationCenter';
+import { Center } from './model/center';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,16 @@ export class DonationCenterService {
     return this.http.post<any>(this.apiHost + 'center/' + id + '/appointment', term, { headers: this.headers });
   }
 
+  createReservation(id: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'appointment/' + id + '/reserve', { headers: this.headers });
+  }
+
   getCenters(): Observable<DonationCenter[]> {
     return this.http.get<DonationCenter[]>(this.apiHost + 'center/', { headers: this.headers });
+  }
+
+  getCenter(id: number): Observable<Center> {
+    return this.http.get<Center>(this.apiHost + 'center/' + id, { headers: this.headers });
   }
 
   getCenterById(id: number): DonationCenter | undefined {
@@ -37,15 +46,15 @@ export class DonationCenterService {
 
   addPredefiendTermsToCenter(center: DonationCenter | undefined, term: Appointment): void {
     this.createAppointment(center!.id, term).subscribe(res => {
-      console.log(res);
+      console.log("Appointment created: ", res);
     });
 
     //console.log(center)
-    if (center != undefined) {
-      let target: DonationCenter | undefined = this.Donation_centers.find(x => { x.id === center.id });
-      if (target != undefined)
-        target.predefiendAvailableAppointments.push(term);
-    }
+    // if (center != undefined) {
+    //   let target: DonationCenter | undefined = this.Donation_centers.find(x => { x.id === center.id });
+    //   if (target != undefined)
+    //     target.predefiendAvailableAppointments.push(term);
+    // }
   }
 
   getDisplayedColumn() {

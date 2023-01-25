@@ -1,9 +1,10 @@
-import { Component, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core'; 
+import { Component, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationComponent } from 'src/app/dialogs/confirmation/confirmation.component';
 import { DonationCenterService } from 'src/app/donation-center.service';
 import { Appointment } from 'src/app/model/appointment';
 import { DonationCenter } from 'src/app/model/donationCenter';
+import { Reservation } from 'src/app/model/reservation';
 import { UsersService } from 'src/app/users.service';
 
 @Component({
@@ -16,14 +17,30 @@ export class AppointmentListComponent implements OnChanges {
   @Input() userType: String | undefined;
 
 
-  predefinedAppointments: Array<Appointment> | null | undefined;
-  constructor(private donationService: DonationCenterService, private userService: UsersService,public dialog: MatDialog) {
+  appointments: Reservation[] = [];
+  predefinedAppointments: Array<Appointment> = [];
+  constructor(private donationService: DonationCenterService, private userService: UsersService, public dialog: MatDialog) {
 
   }
   isQuestionareFilled = this.userService.didLoggedUserFilledQuestionare();
   ngOnChanges(changes: SimpleChanges): void {
-    this.predefinedAppointments = this.donationService.getPredefiendAvailableAppointmentsByCenterId(this.donationCenter.id);
-    console.log(changes);
+    //this.predefinedAppointments = this.donationService.getPredefiendAvailableAppointmentsByCenterId(this.donationCenter.id);
+    this.donationService.getCenter(this.donationCenter.id).subscribe(res => {
+      this.predefinedAppointments = res.appointments;
+
+      for (let appointment of this.predefinedAppointments) {
+        let reservation: Reservation = {
+          id: appointment.id,
+          start: new Date(appointment.start * 1000).toLocaleTimeString(),
+          end: new Date(appointment.end * 1000).toLocaleTimeString(),
+          date: new Date(appointment.start * 1000).toLocaleDateString(),
+        };
+        this.appointments.push(reservation);
+      }
+      console.log("original: ", this.predefinedAppointments);
+      console.log("display: ", this.appointments);
+    })
+
   }
   ngOnInit() {
     this.updateView(this.donationCenter);
@@ -31,7 +48,7 @@ export class AppointmentListComponent implements OnChanges {
 
   sortCriteria = " ";
   updateView(event: any) {
-    this.predefinedAppointments = this.donationService.getPredefiendAvailableAppointmentsByCenterId(event.id);
+    //this.predefinedAppointments = this.donationService.getPredefiendAvailableAppointmentsByCenterId(event.id);
 
   }
   sort(event: any) {
@@ -44,21 +61,22 @@ export class AppointmentListComponent implements OnChanges {
         break;
     }
   }
-  reserveTerm(sender: any, data: Appointment) {
+  reserveTerm(sender: any, data: Reservation) {
     console.log(data);
-   
+
     const dialogRef = this.dialog.open(ConfirmationComponent, {
       data: data,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if(result == 'yes')
-        sender.path[0].disabled = true;
-      
+      //console.log('The dialog was closed');
+      if (result == 'yes')
+        this.donationService.createReservation(data.id).subscribe(res => {
+          console.log("Appointment reserved", res);
+        });
     });
   }
-  
+
   deleteTerm() { }
   updateTerm() { }
 }
