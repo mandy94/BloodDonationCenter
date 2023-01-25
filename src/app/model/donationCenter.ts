@@ -4,7 +4,7 @@ export interface DonationCenter{
     id:number,
     name: string,
     city: string,
-    street : string,
+    address : string,
     rating: number,
     img: string,
     predefiendAvailableAppointments :any

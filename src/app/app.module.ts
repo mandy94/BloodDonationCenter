@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,12 +33,14 @@ import {
   NgxMatNativeDateModule, 
   NgxMatTimepickerModule 
 } from '@angular-material-components/datetime-picker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { QuestionareComponent } from './user/questionare/questionare.component';
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -57,6 +59,7 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     AppointmentListComponent,
     QuestionareComponent,
     ConfirmationComponent,
+    LoginComponent,
     
     
   ],
@@ -64,7 +67,7 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     MatDialogModule,
     MatRadioModule,
     MatIconModule,
-    
+    NgxMaterialTimepickerModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
@@ -81,6 +84,7 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     FlexLayoutModule,
     MatDatepickerModule,
     BrowserModule,
+    HttpClientModule,
     MatInputModule,
     MatSlideToggleModule,
     AppRoutingModule,
