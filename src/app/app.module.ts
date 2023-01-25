@@ -39,6 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { QuestionareComponent } from './user/questionare/questionare.component';
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     AppointmentListComponent,
     QuestionareComponent,
     ConfirmationComponent,
+    LoginComponent,
     
     
   ],

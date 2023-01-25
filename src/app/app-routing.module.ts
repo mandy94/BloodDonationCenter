@@ -10,9 +10,11 @@ import { UserHomeComponent } from './user/user-home/user-home.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { UsersTableComponent } from './admin/users-table/users-table.component';
 import { QuestionareComponent } from './user/questionare/questionare.component';
-
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
  const routes: Routes = [
       {path:'' , component:StartComponent},
+      {path:'login', component:LoginComponent},
       { path: 'user', component: UserHomeComponent },
       {path :'users', component: UsersTableComponent },
       { path: 'admin', component: AdminHomeComponent},
@@ -28,6 +30,7 @@ import { QuestionareComponent } from './user/questionare/questionare.component';
   imports: [
     NgbPaginationModule,
     NgbAlertModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
