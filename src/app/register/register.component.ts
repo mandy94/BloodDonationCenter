@@ -22,7 +22,7 @@ export class RegisterComponent {
     phone: new FormControl(''),
     country: new FormControl(''),  
     gender: new FormControl(''),
-    ocupation: new FormControl(''), // zapravo je education a
+    occupation: new FormControl(''), // zapravo je education a
     jmbg: new FormControl(''),
     employment: new FormControl(''),
 });

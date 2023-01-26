@@ -49,7 +49,7 @@ export class DonationcenterComponent {
 
   }
   goToQuestionare(){
-    this.router.navigate(['/users/questionare-form']);
+    this.router.navigate(['/user/questionare']);
   }
 
   printStars(count: number) {

@@ -11,8 +11,12 @@ import { Center } from './model/center';
 })
 export class DonationCenterService {
 
-  apiHost: string = 'http://localhost:8181/';
-  headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+  apiHost: string = 'http://localhost:8080/';
+  headers: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Authorization': 'Bearer ' + localStorage.getItem('access-token')
+  });
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +25,7 @@ export class DonationCenterService {
   }
 
   createReservation(id: any): Observable<any> {
-    return this.http.put<any>(this.apiHost + 'appointment/' + id + '/reserve', { headers: this.headers });
+    return this.http.post<any>(this.apiHost + 'appointment/' + id + '/reserve', null, { headers: this.headers });
   }
 
   getCenters(): Observable<DonationCenter[]> {
