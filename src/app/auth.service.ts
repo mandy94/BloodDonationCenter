@@ -23,6 +23,6 @@ export class AuthService {
   login(value: Partial<{ username: string | null; password: string | null; }>){    
     return this.http.post('http://localhost:8080/auth/login', value);
   }
-
+  
   
 }

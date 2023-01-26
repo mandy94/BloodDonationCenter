@@ -17,11 +17,20 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UsersService {
+  logout() {
+   localStorage.setItem('access-token', '');
+  }
   constructor(private http: HttpClient, private dc: DonationCenterService) { }
   getLoggedUserAppointments() {
-    return this.http.get('http://localhost:8181/appointment/me', httpOptions);
+    return this.http.get('http://localhost:8080/appointment/me', httpOptions);
 
   }
+  isUserLogged(): any {
+    return this.http.get('http://localhost:8080/user/profile', httpOptions)
+  }       
+    
+    
+  
 
   USERS: Array<User> = [
     { id: 1, firstName: "Pera", lastName: "Peric", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "?", assigned: this.dc.getCenterById(1), appointments: null, enabled: true, password: "123" },

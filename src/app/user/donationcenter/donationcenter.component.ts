@@ -12,18 +12,18 @@ var displayedColumns: string[];
   styleUrls: ['./donationcenter.component.css']
 })
 export class DonationcenterComponent {
-
-  constructor(private dcServise: DonationCenterService,private userService: UsersService, private router:Router) { }
+  
+  constructor(private dcServise: DonationCenterService, private userService: UsersService, private router: Router) { }
   // emiter: EventEmitter<any> = new EventEmitter();
   centers: DonationCenter[] = [];
   donationCenters = new MatTableDataSource<DonationCenter>();
   displayedColumns = this.dcServise.getDisplayedColumn();
   selectedCenter: any;
-  searchString:string ="";
+  searchString: string = "";
   selectedOption = 6;
-  isQuestionareFilled =this.userService.didLoggedUserFilledQuestionare();
+  isQuestionareFilled = this.userService.didLoggedUserFilledQuestionare();
   ngOnInit() {
-    this.dcServise.getCenters().subscribe(res=> {
+    this.dcServise.getCenters().subscribe(res => {
       this.centers = res;
       this.donationCenters.data = this.centers;
     })
@@ -32,23 +32,64 @@ export class DonationcenterComponent {
       let searchName = filter.split("|")[0];
       let searchRating = filter.split("|")[1];
       return (data.name.toString().toLowerCase().includes(searchName)
-      || data.city.toLowerCase().includes(searchName)
-      || data.address.toString().toLowerCase() === searchName)
-      && data.rating <= Number(searchRating)
+        || data.city.toLowerCase().includes(searchName)
+        || data.address.toString().toLowerCase() === searchName)
+        && data.rating <= Number(searchRating)
 
     };
   }
+  addPredefiendTerm = new FormGroup({
+    start: new FormControl(''),
+    end: new FormControl(''),
+    date: new FormControl(new Date(Date.now()))
+  })
+
+
+  searchByTerm() {
+    
+      let date = this.addPredefiendTerm.value.date!;
+      let startTime = this.addPredefiendTerm.value.start!;
+      let endTime = this.addPredefiendTerm.value.end!;
+  
+      let s1 = startTime.split(':');
+      let startHour: number = +s1[0];
+      let startMinute: number = +s1[1];
+      
+      let s2 = endTime.split(':');
+      let endHour: number = +s2[0];
+      let endMinute: number = +s2[1];
+  
+      let start = date.setHours(startHour, startMinute) / 1000;
+      let end = date.setHours(endHour, endMinute) / 1000;
+  
+      //console.log("start", start);
+      //console.log("end", end);
+  
+      // generate term with start and end time for instant type in java
+      let term: Appointment = {
+        id: 0, // delete to be
+        start: start,
+        end: end,
+        date: new Date()
+      }
+      if (this.addPredefiendTerm.value.date)
+        term.date = this.addPredefiendTerm.value.date;
+  
+      //this.donationCenterService.addPredefiendTermsToCenter(this.donationCenter, term);
+      //this.notifyParent.emit(term);
+    
+  }
 
   applyFilter() {
-      this.donationCenters.filter = this.searchString.trim().toLowerCase() + "|" + this.selectedOption;
-      this.selectedCenter=null;
-    }
+    this.donationCenters.filter = this.searchString.trim().toLowerCase() + "|" + this.selectedOption;
+    this.selectedCenter = null;
+  }
 
   showCenterDetails(item: DonationCenter) {
     this.selectedCenter = item;
 
   }
-  goToQuestionare(){
+  goToQuestionare() {
     this.router.navigate(['/user/questionare']);
   }
 
@@ -64,6 +105,8 @@ export class DonationcenterComponent {
 import { Pipe, PipeTransform } from "@angular/core";
 import { UsersService } from 'src/app/users.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Appointment } from 'src/app/model/appointment';
 
 
 @Pipe({

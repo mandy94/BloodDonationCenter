@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { UsersService } from '../users.service';
 
 
 @Component({
@@ -11,19 +12,30 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private userService : UsersService) { }
   loginForm= new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
-  })
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
-
+  });
+   
+  isUserLogged:boolean | undefined = false;
   ngOnInit() {
+    this.userService.isUserLogged().subscribe((res: any) =>  {
+      this.isUserLogged =  res != null? true : false
+    });
+    console.log(this.isUserLogged);
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
-  }
-
+  }  
+  logout() {
+    this.userService.logout();      
+    this.isUserLogged = false;
+    this.router.navigate(['/login']); 
+    }
+    
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe((res:any) => {
         console.log(res);
