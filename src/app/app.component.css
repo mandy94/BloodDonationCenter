@@ -9,11 +9,17 @@ ul {
     gap: 15px;
     list-style-type: none; /* Remove bullets */
     background-color: gray;
+    justify-content: left;
 
 }
+
 button{
     width: 50%;
     margin-top: 15px;
     height: 100px;
     font-size: large;
 }
+ul > *:last-child {
+    margin-left: auto; /* Push the last item to the right */
+  }
+/* css for left aligning the link in navbar */

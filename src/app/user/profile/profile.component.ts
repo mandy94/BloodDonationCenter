@@ -9,19 +9,23 @@ import { UsersService } from 'src/app/users.service';
 })
 export class ProfileComponent {
   router: any;
-
-  constructor(private userService: UsersService, private appointmentServise: AppointmentsService) { 
-  this.userService.getLoggedUserAppointments().
-  subscribe(res => {
-    this.Appointments = res;
-    console.log(res);
-  });
+  me: any;
+  constructor(private userService: UsersService, private appointmentServise: AppointmentsService) {
+    this.userService.getLoggedUserAppointments().
+      subscribe(res => {
+        this.Appointments = res;
+        console.log(res);
+      });
+    this.userService.getProfile().subscribe((res: any) => {
+      this.me = res;
+      console.log(res);
+    });
   }
-Appointments: any;
-cancel(id: number){
-  this.appointmentServise.cancelAppointment(id).subscribe((res:any) => {
-    console.log(res);
-    this.router.navigate(['/profile']);
-  });
-}
+  Appointments: any;
+  cancel(id: number) {
+    this.appointmentServise.cancelAppointment(id).subscribe((res: any) => {
+      console.log(res);
+      this.router.navigate(['/profile']);
+    });
+  }
 }

@@ -17,6 +17,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UsersService {
+  getProfile() {
+    return this.http.get('http://localhost:8080/user/profile', httpOptions );
+  }
   logout() {
    localStorage.setItem('access-token', '');
   }

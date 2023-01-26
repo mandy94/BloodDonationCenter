@@ -21,9 +21,10 @@ export class LoginComponent implements OnInit {
    
   isUserLogged:boolean | undefined = false;
   ngOnInit() {
-    this.userService.isUserLogged().subscribe((res: any) =>  {
-      this.isUserLogged =  res != null? true : false
-    });
+    // this.userService.isUserLogged().subscribe((res: any) =>  {
+    //   this.isUserLogged =  res != null? true : false
+    // });
+    this.authService.isAuthenticated() ? this.isUserLogged = true : this.isUserLogged = false;
     console.log(this.isUserLogged);
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],

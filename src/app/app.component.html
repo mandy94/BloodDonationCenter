@@ -1,11 +1,13 @@
 <nav>
   <ul>
- 
+ <li></li>
     <li><a [routerLink]="['/']">Home</a></li>
     <li *ngIf="loggedUser()"><a [routerLink]="['/user/profile']" >Profile</a></li>
     <li *ngIf="loggedUser()"><a [routerLink]="['/user/questionare']">Questionare</a></li>
-
-    <li *ngIf="loggedUser()"><a [routerLink]="['/user/profile']">Profile</a></li>
+    <li *ngIf="loggedUser()"><a [routerLink]="['/user/donation-centers']">Search donations centers</a></li>
+    <li *ngIf="loggedUser()" ><a [routerLink]="['/']">Sign out</a></li>
+    
+    
   </ul>
 </nav>
 

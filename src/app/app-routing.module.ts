@@ -13,17 +13,19 @@ import { QuestionareComponent } from './user/questionare/questionare.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './auth-guard.service';
  const routes: Routes = [
       {path:'' , component:StartComponent},
       {path:'login', component:LoginComponent},
       {path:'register', component:RegisterComponent},
-      { path: 'user', component:UserHomeComponent },
-      {path :'users', component:UsersTableComponent },
-      { path: 'admin', component:AdminHomeComponent},
-      { path: 'user/profile', component:UserProfileComponent },
-      { path: 'admin/profile', component:AdminProfileComponent},
+      { path: 'user', component:UserHomeComponent ,canActivate: [AuthGuard] ,data:{expectedRole:'USER'}},
+      {path :'users', component:UsersTableComponent,canActivate: [AuthGuard] },
+      { path: 'admin', component:AdminHomeComponent,canActivate: [AuthGuard] ,data:{expectedRole:'STUFF'}},
+      { path: 'user/profile', component:UserProfileComponent  ,canActivate: [AuthGuard]},
+      { path: 'admin/profile', component:AdminProfileComponent ,canActivate: [AuthGuard]},
       { path: 'centers', component:DonationcenterComponent},  
-      {path: 'user/questionare', component:QuestionareComponent},
+      { path: 'user/donation-centers', component:DonationcenterComponent},  
+      {path: 'user/questionare', component:QuestionareComponent, canActivate: [AuthGuard]},
       // { path: '',   redirectTo: '/profile', pathMatch: 'full' }, 
       { path: '**', component: PageNotFoundComponent}
 ];

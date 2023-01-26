@@ -10,7 +10,7 @@ export class AppComponent {
   
   
   loggedUser(){
-    return localStorage.getItem('token')!=undefined?true:false;
+    return localStorage.getItem('access-token')!=''?true:false;
   }
 
 }
