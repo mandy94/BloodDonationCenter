@@ -39,8 +39,8 @@ export class AppointmentListComponent implements OnChanges {
           date: new Date(appointment.start * 1000).toLocaleDateString(),
         });
       }
-      console.log("original: ", this.predefinedAppointments);
-      console.log("display: ", this.appointments);
+      //console.log("original: ", this.predefinedAppointments);
+      //console.log("display: ", this.appointments);
     })
 
   }

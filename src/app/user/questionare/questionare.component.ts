@@ -8,12 +8,18 @@ import { UsersService } from 'src/app/users.service';
 })
 export class QuestionareComponent {
 
-  constructor( private userService:UsersService){}
+  selected: any[] = [];
+  constructor(private userService: UsersService) { }
   questions = Object.assign(this.userService.QUESTIONARE); // copy construktor
-  ngOnInit(){}
-  saveQuestionare(){
-   console.log(this.questions); 
-   this.userService.saveUsersFilledQuestionare( this.questions);
+  ngOnInit() { }
+  saveQuestionare() {
+    for (let question of this.questions) {
+      if (question.answer)
+        this.selected.push(question.value);
+    }
+    this.userService.saveUsersFilledQuestionare(this.selected).subscribe(res => {
+      console.log(res);
+    });
   }
 }
 

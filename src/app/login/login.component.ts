@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         console.log(res);
         localStorage.setItem('access-token', res.accessToken);
         const decoded = this.authService.getDecodedAccessToken(res.accessToken);
-        localStorage.setItem('user', JSON.stringify(decoded));
+        localStorage.setItem('user', decoded);
         this.authService.loggedUser = decoded;
         console.log(this.authService.loggedUser); 
         if(res.role === "USER")        

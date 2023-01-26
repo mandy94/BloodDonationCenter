@@ -18,10 +18,10 @@ export class AuthService {
   constructor(private http: HttpClient){}
  loggedUser: any;
   register(value: any) {
-    return this.http.post('http://localhost:8181/auth/signup', value);
+    return this.http.post('http://localhost:8080/auth/signup', value);
   }
   login(value: Partial<{ username: string | null; password: string | null; }>){    
-    return this.http.post('http://localhost:8181/auth/login', value);
+    return this.http.post('http://localhost:8080/auth/login', value);
   }
 
   
