@@ -24,8 +24,16 @@ export class DonationCenterService {
     return this.http.post<any>(this.apiHost + 'center/' + id + '/appointment', term, { headers: this.headers });
   }
 
+  createCustomReservation(id: any, term: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'center/' + id + '/reservation', term, { headers: this.headers });
+  }
+
   createReservation(id: any): Observable<any> {
     return this.http.post<any>(this.apiHost + 'appointment/' + id + '/reserve', null, { headers: this.headers });
+  }
+
+  searchCenters(term: Appointment): Observable<DonationCenter[]> {
+    return this.http.post<DonationCenter[]>(this.apiHost + 'center/search', term, { headers: this.headers });
   }
 
   getCenters(): Observable<DonationCenter[]> {
