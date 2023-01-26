@@ -30,7 +30,7 @@ export class DonationcenterComponent {
     })
     this.userService.getLoggedUser().subscribe(res => {
       console.log(res);
-      //this.isQuestionareFilled = res;
+      this.isQuestionareFilled = res.questionnaire? true:false;
     });
 
     this.donationCenters.filterPredicate = function (data, filter: string,): boolean {

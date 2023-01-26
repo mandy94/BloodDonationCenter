@@ -21,7 +21,7 @@ export class UsersService {
     return this.http.get('http://localhost:8080/user/profile', httpOptions );
   }
   logout() {
-   localStorage.setItem('access-token', '');
+   localStorage.clear();
   }
   constructor(private http: HttpClient, private dc: DonationCenterService) { }
   getLoggedUserAppointments() {

@@ -76,6 +76,9 @@
                     <app-appointment-list [donationCenter]="selectedCenter" [userType]="'User'"></app-appointment-list>
 
                     <!-- 3.11 funciolnost -->
+                    <mat-card-actions>
+                        <button (click)="additionalTerm($event, selectedCenter)">Rezervisi trazeni termin</button>
+                      </mat-card-actions>
                 </div>
             </mat-card-content>
         </mat-card>
