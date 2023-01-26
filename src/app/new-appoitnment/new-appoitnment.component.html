@@ -1,0 +1,26 @@
+<div class="modal-z-index">
+    <h1>Unesite pocetak i datum zeljejog termina</h1>
+    <div class="w-80">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <input matInput [ngxTimepicker]="endTime" [format]="24" placeholder="Formata hh-mm"
+                    formControlName="end" required>
+                <ngx-material-timepicker #endTime class="timepicker-z-index"></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [ngxTimepicker]="startTime" [format]="24" placeholder="Formata hh-mm"
+                    formControlName="start" required>
+                <ngx-material-timepicker #startTime class="timepicker-z-index"></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field>
+
+                <mat-label>Datum rodjenja</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Unesite datum">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="onSubmit()">Submit</button>
+        </form>
+
+    </div>
+</div>

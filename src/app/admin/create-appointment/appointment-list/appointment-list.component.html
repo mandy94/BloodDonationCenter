@@ -29,9 +29,10 @@
              <button (click)="reserveTerm($event, item)" [disabled]="!isQuestionareFilled"> {{item.date}} : {{item.start}} - {{item.end}}
             </button>
         </mat-card-actions>
-        <!-- </div> -->
-        <!-- </mat-card> -->
     </div>
-    <p *ngIf="predefinedAppointments?.length==0"> Nema termina koji tebi odogvara? Predlozi termin:</p>
+    
+        <mat-card-actions>
+            <button (click)="additionalTerm()"> Nema termina koji tebi odogvara? Predlozi termin:</button>
+            
+        </mat-card-actions>
 </div>
-<!-- </div> -->

@@ -41,6 +41,11 @@ import {MatRadioModule} from '@angular/material/radio';
 import { QuestionareComponent } from './user/questionare/questionare.component';
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
 import { LoginComponent } from './login/login.component';
+import { NewAppoitnmentComponent } from './new-appoitnment/new-appoitnment.component';
+import { RegisterComponent } from './register/register.component';
+
+import{MatTabsModule} from '@angular/material/tabs';
+
 
 
 @NgModule({
@@ -54,12 +59,17 @@ import { LoginComponent } from './login/login.component';
     AdminHomeComponent,
     UserHomeComponent,
     OrdinalPipe,
+   
     UsersTableComponent,
     CreateAppointmentComponent,
     AppointmentListComponent,
     QuestionareComponent,
-    ConfirmationComponent,
+    ConfirmationComponent,    
+    NewAppoitnmentComponent,
     LoginComponent,
+    NewAppoitnmentComponent,
+    RegisterComponent,
+    
     
     
   ],
@@ -73,12 +83,14 @@ import { LoginComponent } from './login/login.component';
     NgxMatNativeDateModule,
     MatNativeDateModule,
     FormsModule,
+    MatTabsModule,
     ReactiveFormsModule,
     MatSidenavModule,
     MatExpansionModule,
     MatSelectModule,
     MatCardModule,
     MatButtonModule,
+    MatTableModule,
     MatTableModule,
     FormsModule,
     FlexLayoutModule,

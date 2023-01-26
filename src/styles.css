@@ -13,7 +13,15 @@ body {
    
     background-size: cover;
 }
-
+.timepicker-z-index{
+    z-index: 9999 !important;
+    background-color: black;
+  }
+  
+  .modal-z-index{
+    z-index: 999 !important;
+    background-color: rebeccapurple;
+  }
 .w-80 {
     width: 80%;
 }

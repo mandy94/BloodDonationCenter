@@ -43,6 +43,7 @@ export class CreateAppointmentComponent implements OnInit { // chield
     //console.log("start", start);
     //console.log("end", end);
 
+    // generate term with start and end time for instant type in java
     let term: Appointment = {
       id: 0, // delete to be
       start: start,
@@ -55,4 +56,5 @@ export class CreateAppointmentComponent implements OnInit { // chield
     this.donationCenterService.addPredefiendTermsToCenter(this.donationCenter, term);
     //this.notifyParent.emit(term);
   }
+    
 }

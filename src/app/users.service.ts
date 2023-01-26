@@ -4,11 +4,24 @@ import { UsersTableComponent } from './admin/users-table/users-table.component';
 import { DonationCenterService } from './donation-center.service';
 import { DonationCenter } from './model/donationCenter';
 import { User } from './model/user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Authorization': 'Bearer ' + localStorage.getItem('access-token')
+  })
+};
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  constructor(private http: HttpClient, private dc: DonationCenterService) { }
+  getLoggedUserAppointments() {
+    return this.http.get('http://localhost:8181/appointment/me',httpOptions);
+  
+  }
 
   USERS: Array<User> = [
     { id: 1, firstName: "Pera", lastName: "Peric", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "?", assigned: this.dc.getCenterById(1), appointments: null, enabled: true, password: "123" },
@@ -56,7 +69,7 @@ export class UsersService {
   displays = ['ID', 'Korisnicko ime', 'Ime', 'Prezime', 'Adresa', 'Broj telefona', 'Status']
   props = ['id', 'fullName', 'address', 'phone', 'status']
 
-  constructor(private dc: DonationCenterService ){ }
+  
   loggedUser: User = this.USERS[1];
 
   API = 'http://localhost:8181'

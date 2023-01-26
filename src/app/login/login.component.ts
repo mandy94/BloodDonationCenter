@@ -27,12 +27,16 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe((res:any) => {
         console.log(res);
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('access-token', res.accessToken);
         const decoded = this.authService.getDecodedAccessToken(res.accessToken);
-        console.log(decoded);
         localStorage.setItem('user', JSON.stringify(decoded));
-        if(res.role === "USER")
-          this.router.navigate(['/']);
+        this.authService.loggedUser = decoded;
+        console.log(this.authService.loggedUser); 
+        if(res.role === "USER")        
+          this.router.navigate(['/user'])
+        else
+          this.router.navigate(['/admin'])
+        
           
       },
       (err: any) => console.log(err)

@@ -12,16 +12,18 @@ import { UsersTableComponent } from './admin/users-table/users-table.component';
 import { QuestionareComponent } from './user/questionare/questionare.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
  const routes: Routes = [
       {path:'' , component:StartComponent},
       {path:'login', component:LoginComponent},
+      {path:'register', component:RegisterComponent},
       { path: 'user', component: UserHomeComponent },
       {path :'users', component: UsersTableComponent },
       { path: 'admin', component: AdminHomeComponent},
       { path: 'user/profile', component: UserProfileComponent },
       { path: 'admin/profile', component: AdminProfileComponent},
       { path: 'centers', component: DonationcenterComponent},  
-      {path: 'users/questionare-form', component:QuestionareComponent},
+      {path: 'user/questionare', component:QuestionareComponent},
       // { path: '',   redirectTo: '/profile', pathMatch: 'full' }, 
       { path: '**', component: PageNotFoundComponent}
 ];
