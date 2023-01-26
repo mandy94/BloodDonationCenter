@@ -22,12 +22,16 @@ export class DonationcenterComponent {
   selectedCenter: any;
   searchString: string = "";
   selectedOption = 6;
-  isQuestionareFilled = this.userService.didLoggedUserFilledQuestionare();
+  isQuestionareFilled=false;
   ngOnInit() {
     this.dcServise.getCenters().subscribe(res => {
       this.centers = res;
       this.donationCenters.data = this.centers;
     })
+    this.userService.getLoggedUser().subscribe(res => {
+      console.log(res);
+      //this.isQuestionareFilled = res;
+    });
 
     this.donationCenters.filterPredicate = function (data, filter: string,): boolean {
       let searchName = filter.split("|")[0];

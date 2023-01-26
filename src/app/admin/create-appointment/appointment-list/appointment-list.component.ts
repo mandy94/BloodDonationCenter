@@ -23,7 +23,7 @@ export class AppointmentListComponent implements OnChanges {
   constructor(private donationService: DonationCenterService, private userService: UsersService, public dialog: MatDialog) {
 
   }
-  isQuestionareFilled = this.userService.didLoggedUserFilledQuestionare();
+  isQuestionareFilled = this.userService.getLoggedUser()//.questionare;
   
   ngOnChanges(changes: SimpleChanges): void {
     

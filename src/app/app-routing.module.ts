@@ -20,7 +20,7 @@ import { AuthGuard } from './auth-guard.service';
       {path:'register', component:RegisterComponent},
       { path: 'user', component:UserHomeComponent ,canActivate: [AuthGuard] ,data:{expectedRole:'USER'}},
       {path :'users', component:UsersTableComponent,canActivate: [AuthGuard] },
-      { path: 'admin', component:AdminHomeComponent,canActivate: [AuthGuard] ,data:{expectedRole:'STUFF'}},
+      { path: 'admin', component:AdminHomeComponent,canActivate: [AuthGuard] ,data:{expectedRole:'STAFF'}},
       { path: 'user/profile', component:UserProfileComponent  ,canActivate: [AuthGuard]},
       { path: 'admin/profile', component:AdminProfileComponent ,canActivate: [AuthGuard]},
       { path: 'centers', component:DonationcenterComponent},  

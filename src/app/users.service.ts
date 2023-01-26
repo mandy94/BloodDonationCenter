@@ -25,7 +25,7 @@ export class UsersService {
   }
   constructor(private http: HttpClient, private dc: DonationCenterService) { }
   getLoggedUserAppointments() {
-    return this.http.get('http://localhost:8080/appointment/me', httpOptions);
+    return this.http.get('http://localhost:8080/appointment/', httpOptions);
 
   }
   isUserLogged(): any {
@@ -35,20 +35,9 @@ export class UsersService {
     
   
 
-  USERS: Array<User> = [
-    { id: 1, firstName: "Pera", lastName: "Peric", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "?", assigned: this.dc.getCenterById(1), appointments: null, enabled: true, password: "123" },
-    { id: 2, firstName: "Jovan", lastName: "Losa", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "filled", assigned: this.dc.getCenterById(1), appointments: null, enabled: false, password: "123" },
-    { id: 3, firstName: "Milia", lastName: "Kovacevoic", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "?", assigned: this.dc.getCenterById(1), appointments: null, enabled: true, password: "123" },
-    { id: 4, firstName: "Nikola", lastName: "Zvetic", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "?", assigned: this.dc.getCenterById(2), appointments: null, enabled: true, password: "123" },
-    { id: 5, firstName: "Jovana", lastName: "JOvik", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "?", assigned: this.dc.getCenterById(3), appointments: null, enabled: false, password: "123" },
-    { id: 6, firstName: "Ana", lastName: "Jokic", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "?", assigned: this.dc.getCenterById(3), appointments: null, enabled: false, password: "123" },
-    { id: 7, firstName: "Mileva", lastName: "Tot", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "?", assigned: this.dc.getCenterById(2), appointments: null, enabled: true, password: "123" },
-    { id: 8, firstName: "Spahija", lastName: "Iles", username: "PericNajjaci", address: "Kucna 1", city: "NS", country: "SRB", phone: "324325", jmbg: 234232, gender: "Male", occupation: "?", employment: "d", questionnaire: "?", assigned: this.dc.getCenterById(4), appointments: null, enabled: true, password: "123" },
-  ]
   QUESTIONARE: any = [
     { answer: false, text: "O0 Have you given blood in the last six months?", value: "O0" },
     { answer: false, text: "O1 I consent to give blood, or blood components", value: "O1" },
-
     { answer: false, text: "A1 Have you tested positive for HIV or do you think you may be HIV positive?", value: "A1" },
     { answer: false, text: "A2 Have you ever had hepatitis B or hepatitis C or think you may have hepatitis now?", value: "A2" },
     { answer: false, text: "A3 Have you ever injected yourself or been injected with illegal or non-prescribed drugs including body-building drugs or cosmetics?", value: "A3" },
@@ -85,7 +74,7 @@ export class UsersService {
   props = ['id', 'fullName', 'address', 'phone', 'status']
 
 
-  loggedUser: User = this.USERS[1];
+  
 
   apiHost = 'http://localhost:8080/';
 
@@ -93,25 +82,19 @@ export class UsersService {
     //return this.loggedUser;
     return this.http.get<any>(this.apiHost + 'user/profile', httpOptions);
   }
-  didLoggedUserFilledQuestionare() {
-    if (this.loggedUser.questionnaire == "?") return false;
-    return true;
-  }
+  
   saveUsersFilledQuestionare(selected: any): Observable<any> {
     return this.http.post<any>(this.apiHost + 'user/form', selected, httpOptions);
     //this.loggedUser.questionnaire = answers;
   }
-  getAllUsersFromDonationcenter(center: DonationCenter | undefined) {
+  getAllUsersFromDonationcenter(center: DonationCenter | undefined) :any{
     // some query from backend
-    if (center == undefined) return [];
-    return this.USERS.filter(item => {
-      if (item.assigned != undefined) {
-        return item.assigned.id === center.id;
-      } else return false;
-    });
+    return this.http.get<any>(this.apiHost + 'user/all', httpOptions);
+   
   }
   getAllUsers() {
-    return this.USERS;
+   // todo
+   return []
   }
 
   // tempoerary methods ----->

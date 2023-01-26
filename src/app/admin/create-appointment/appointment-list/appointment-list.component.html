@@ -26,16 +26,8 @@
                 </div>
                 <div *ngIf="userType=='User'">-->
         <mat-card-actions>
-             <button (click)="reserveTerm($event, item)" [disabled]="!isQuestionareFilled"> {{item.date}} : {{item.start}} - {{item.end}}
+             <button (click)="reserveTerm($event, item)"> {{item.date}} : {{item.start}} - {{item.end}}
             </button>
         </mat-card-actions>
     </div>
-<<<<<<< HEAD
-    
-        <mat-card-actions>
-            <!-- <button (click)="additionalTerm()"> Nema termina koji tebi odogvara? Predlozi termin:</button> -->
-            
-        </mat-card-actions>
-=======
->>>>>>> 6d19f4d30d6102bae3d2e4182c055a64feaa6646
 </div>

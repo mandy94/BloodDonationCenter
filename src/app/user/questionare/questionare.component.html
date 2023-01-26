@@ -2,7 +2,7 @@
     <h1> Upitnik </h1>
 <div *ngFor="let question of questions">
     
-<span *ngClass="question.answer ? 'enable' : 'disable'"> Ne </span> <mat-slide-toggle [(ngModel)]="question.answer"> <span>Da</span></mat-slide-toggle>
+<mat-slide-toggle [(ngModel)]="question.answer"> <span>Da</span></mat-slide-toggle>
     {{question.text}}
        
     
