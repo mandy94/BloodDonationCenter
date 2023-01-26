@@ -9,7 +9,7 @@
     <mat-radio-button value="name_dsc">Po imenu od Z-A</mat-radio-button>
 </mat-radio-group>
 <div fxLayout="row wrap" fxLayoutAlign="start center">
-    <div *ngFor="let item of predefinedAppointments" fxLayoutGap>
+    <div *ngFor="let item of appointments" fxLayoutGap>
         <!-- <button [disabled]="!isQuestionareFilled"> {{item.start}} - {{item.end}}</button> -->
         <!-- <mat-card fxFlex> 
                 <mat-card-header [ngClass]="{'red' : sortCriteria==='name_asc', 'green':sortCriteria==='name_dsc'}">
@@ -26,12 +26,8 @@
                 </div>
                 <div *ngIf="userType=='User'">-->
         <mat-card-actions>
-             <button (click)="reserveTerm($event, item)" [disabled]="!isQuestionareFilled"> {{item.start}} - {{item.end}}
+             <button (click)="reserveTerm($event, item)"> {{item.date}} : {{item.start}} - {{item.end}}
             </button>
         </mat-card-actions>
-        <!-- </div> -->
-        <!-- </mat-card> -->
     </div>
-    <p *ngIf="predefinedAppointments?.length==0"> Nema termina koji tebi odogvara? Predlozi termin:</p>
 </div>
-<!-- </div> -->

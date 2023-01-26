@@ -10,16 +10,22 @@ import { UserHomeComponent } from './user/user-home/user-home.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { UsersTableComponent } from './admin/users-table/users-table.component';
 import { QuestionareComponent } from './user/questionare/questionare.component';
-
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './auth-guard.service';
  const routes: Routes = [
       {path:'' , component:StartComponent},
-      { path: 'user', component: UserHomeComponent },
-      {path :'users', component: UsersTableComponent },
-      { path: 'admin', component: AdminHomeComponent},
-      { path: 'user/profile', component: UserProfileComponent },
-      { path: 'admin/profile', component: AdminProfileComponent},
-      { path: 'centers', component: DonationcenterComponent},  
-      {path: 'users/questionare-form', component:QuestionareComponent},
+      {path:'login', component:LoginComponent},
+      {path:'register', component:RegisterComponent},
+      { path: 'user', component:UserHomeComponent ,canActivate: [AuthGuard] ,data:{expectedRole:'USER'}},
+      {path :'users', component:UsersTableComponent,canActivate: [AuthGuard] },
+      { path: 'admin', component:AdminHomeComponent,canActivate: [AuthGuard] ,data:{expectedRole:'STAFF'}},
+      { path: 'user/profile', component:UserProfileComponent  ,canActivate: [AuthGuard]},
+      { path: 'admin/profile', component:AdminProfileComponent ,canActivate: [AuthGuard]},
+      { path: 'centers', component:DonationcenterComponent},  
+      { path: 'user/donation-centers', component:DonationcenterComponent},  
+      {path: 'user/questionare', component:QuestionareComponent, canActivate: [AuthGuard]},
       // { path: '',   redirectTo: '/profile', pathMatch: 'full' }, 
       { path: '**', component: PageNotFoundComponent}
 ];
@@ -28,6 +34,7 @@ import { QuestionareComponent } from './user/questionare/questionare.component';
   imports: [
     NgbPaginationModule,
     NgbAlertModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

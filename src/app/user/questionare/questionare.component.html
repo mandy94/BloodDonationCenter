@@ -1,9 +1,11 @@
-<p>questionare works!</p>
+<div class="m-5">
+    <h1> Upitnik </h1>
 <div *ngFor="let question of questions">
     
-    <mat-slide-toggle [(ngModel)]="question.answer">Slide me!</mat-slide-toggle>
+<mat-slide-toggle [(ngModel)]="question.answer"> <span>Da</span></mat-slide-toggle>
     {{question.text}}
        
     
 </div>
 <button (click)="saveQuestionare()"> Sacuvaj upitnik</button>
+</div>

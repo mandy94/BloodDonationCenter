@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,12 +33,19 @@ import {
   NgxMatNativeDateModule, 
   NgxMatTimepickerModule 
 } from '@angular-material-components/datetime-picker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { QuestionareComponent } from './user/questionare/questionare.component';
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
+import { LoginComponent } from './login/login.component';
+import { NewAppoitnmentComponent } from './new-appoitnment/new-appoitnment.component';
+import { RegisterComponent } from './register/register.component';
+
+import{MatTabsModule} from '@angular/material/tabs';
+
 
 
 @NgModule({
@@ -52,11 +59,17 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     AdminHomeComponent,
     UserHomeComponent,
     OrdinalPipe,
+   
     UsersTableComponent,
     CreateAppointmentComponent,
     AppointmentListComponent,
     QuestionareComponent,
-    ConfirmationComponent,
+    ConfirmationComponent,    
+    NewAppoitnmentComponent,
+    LoginComponent,
+    NewAppoitnmentComponent,
+    RegisterComponent,
+    
     
     
   ],
@@ -64,12 +77,13 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     MatDialogModule,
     MatRadioModule,
     MatIconModule,
-    
+    NgxMaterialTimepickerModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
     MatNativeDateModule,
     FormsModule,
+    MatTabsModule,
     ReactiveFormsModule,
     MatSidenavModule,
     MatExpansionModule,
@@ -77,10 +91,12 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     MatCardModule,
     MatButtonModule,
     MatTableModule,
+    MatTableModule,
     FormsModule,
     FlexLayoutModule,
     MatDatepickerModule,
     BrowserModule,
+    HttpClientModule,
     MatInputModule,
     MatSlideToggleModule,
     AppRoutingModule,

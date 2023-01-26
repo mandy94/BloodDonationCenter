@@ -1,8 +1,13 @@
 <nav>
   <ul>
-    <li><a routerLink="/user" routerLinkActive="active" ariaCurrentWhenActive="page">Korisnika apliakcija</a></li>
-    <li><a routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">Administratorska stranica</a>
-    </li>
+ <li></li>
+    <li><a [routerLink]="['/']">Home</a></li>
+    <li *ngIf="loggedUser()"><a [routerLink]="['/user/profile']" >Profile</a></li>
+    <li *ngIf="loggedUser()"><a [routerLink]="['/user/questionare']">Questionare</a></li>
+    <li *ngIf="loggedUser()"><a [routerLink]="['/user/donation-centers']">Search donations centers</a></li>
+    <li *ngIf="loggedUser()" ><a [routerLink]="['/']">Sign out</a></li>
+    
+    
   </ul>
 </nav>
 

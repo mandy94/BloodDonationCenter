@@ -1,0 +1,40 @@
+<!--  -->
+
+<div *ngIf="!isUserLogged">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h1 class="mat-h1">Login form</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input matInput placeholder="username" formControlName="username">
+          <mat-error *ngIf="loginForm.controls.username.hasError('required')">
+            username is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls.username.hasError('username')">
+            username is <strong>invalid</strong>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Password" formControlName="password" type="password">
+          <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+      </form>
+    </mat-card-content>
+    <a routerLink="/register">register</a>
+  </mat-card>
+</div>
+<div *ngIf="isUserLogged">
+  
+    <h1 class="mat-h1">Logged in</h1>
+  <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+  
+</div>
